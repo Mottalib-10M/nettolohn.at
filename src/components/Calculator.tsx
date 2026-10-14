@@ -95,18 +95,21 @@ export default function Calculator() {
             <label htmlFor="children" className="block text-sm font-semibold text-gray-700 mb-2">
               Anzahl der Kinder (unter 18)
             </label>
-            <select
-              id="children"
-              value={children}
-              onChange={handleChildrenChange}
-              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-colors"
-            >
-              {[0, 1, 2, 3, 4, 5].map((n) => (
-                <option key={n} value={n}>
-                  {n === 0 ? 'Keine Kinder' : `${n} ${n === 1 ? 'Kind' : 'Kinder'}`}
-                </option>
-              ))}
-            </select>
+            <div className="relative">
+              <select
+                id="children"
+                value={children}
+                onChange={handleChildrenChange}
+                className="w-full appearance-none truncate bg-white pl-4 pr-11 py-3 border-2 border-gray-200 rounded-xl focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-colors"
+              >
+                {[0, 1, 2, 3, 4, 5].map((n) => (
+                  <option key={n} value={n}>
+                    {n === 0 ? 'Keine Kinder' : `${n} ${n === 1 ? 'Kind' : 'Kinder'}`}
+                  </option>
+                ))}
+              </select>
+              <svg className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M5 7.5l5 5 5-5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </div>
           </div>
 
           {/* Alleinverdiener */}
@@ -146,18 +149,21 @@ export default function Calculator() {
             <label htmlFor="pendler" className="block text-sm font-semibold text-gray-700 mb-2">
               Pendlerpauschale (jährlich)
             </label>
-            <select
-              id="pendler"
-              value={pendlerpauschale}
-              onChange={handlePendlerChange}
-              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-colors"
-            >
-              <option value="0">Keine Pendlerpauschale</option>
-              <option value="696">Klein (2-20 km): € 696/Jahr</option>
-              <option value="1356">Mittel (20-40 km): € 1.356/Jahr</option>
-              <option value="2016">Groß (40-60 km): € 2.016/Jahr</option>
-              <option value="2676">Sehr groß (&gt; 60 km): € 2.676/Jahr</option>
+            <div className="relative">
+              <select
+                id="pendler"
+                value={pendlerpauschale}
+                onChange={handlePendlerChange}
+                className="w-full appearance-none truncate bg-white pl-4 pr-11 py-3 border-2 border-gray-200 rounded-xl focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-colors"
+              >
+                <option value="0">Keine Pendlerpauschale</option>
+                <option value="696">Klein (2-20 km): € 696/Jahr</option>
+                <option value="1356">Mittel (20-40 km): € 1.356/Jahr</option>
+                <option value="2016">Groß (40-60 km): € 2.016/Jahr</option>
+                <option value="2676">Sehr groß (&gt; 60 km): € 2.676/Jahr</option>
             </select>
+              <svg className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M5 7.5l5 5 5-5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </div>
           </div>
         </div>
 

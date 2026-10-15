@@ -7,6 +7,10 @@ interface Props {
 
 const { title, description = 'Kostenloser Brutto-Netto-Rechner für Österreich 2026. Berechnen Sie Ihr Nettogehalt mit Sozialversicherung, Lohnsteuer, Sonderzahlungen und Familienbonus Plus.', canonical } = Astro.props;
 const canonicalURL = canonical ? new URL(canonical, Astro.site) : new URL(Astro.url.pathname, Astro.site);
+// Date réelle de la dernière mise à jour des Werte (dernier commit de src/lib/baremes-2026.ts) :
+// en pied de page, en toutes lettres, et dans WebPage.dateModified (RECETTE §8.4).
+const LAST_UPDATED = '2026-07-05';
+const datumLang = new Date(`${LAST_UPDATED}T00:00:00Z`).toLocaleDateString('de-AT', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 ---
 
 <!doctype html>
@@ -67,6 +71,12 @@ const canonicalURL = canonical ? new URL(canonical, Astro.site) : new URL(Astro.
       "url": "https://nettolohn.at/ueber-uns/"
     })} />
 
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "url": canonicalURL.href,
+      "dateModified": LAST_UPDATED
+    })} />
   </head>
   <body class="min-h-screen flex flex-col">
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-blue-700 focus:rounded-lg focus:shadow-lg focus:ring-2 focus:ring-blue-500">Skip to content</a>
@@ -132,6 +142,7 @@ const canonicalURL = canonical ? new URL(canonical, Astro.site) : new URL(Astro.
           </div>
         </div>
         <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm">
+          <p class="mb-2">Zuletzt aktualisiert: <time datetime={LAST_UPDATED}>{datumLang}</time></p>
           <p>&copy; {new Date().getFullYear()} nettolohn.at — Alle Rechte vorbehalten.</p>
         </div>
       </div>
